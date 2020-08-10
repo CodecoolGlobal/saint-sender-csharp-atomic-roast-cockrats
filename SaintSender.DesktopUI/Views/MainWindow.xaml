@@ -12,7 +12,7 @@
             <Button Content="Greet" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
                     Margin="130,0,0,0" />
             <Button Content="Add E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="215, 0,0,0" />
+                    Margin="215, 0,0,0" Click="AddEmailBtn_Click" />
             <Button Content="Compose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
                     Margin="300, 0,0,0" />
             <Button Content="Backup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"

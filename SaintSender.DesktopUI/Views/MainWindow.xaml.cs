@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using SaintSender.DesktopUI.Views;
 
 namespace SaintSender.DesktopUI
 {
@@ -10,6 +11,12 @@ namespace SaintSender.DesktopUI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void AddEmailBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Window addEmailWindow = new AddEmail();
+            addEmailWindow.ShowDialog();
         }
     }
 }
