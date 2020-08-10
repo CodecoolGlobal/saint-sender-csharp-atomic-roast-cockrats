@@ -7,12 +7,15 @@
         Title="Add Email" Height="200" Width="300">
     <Grid>
         <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 10 10 0" Text="E-mail address:" />
-        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 40 10 0" />
+        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 40 10 0"
+                 Text="{Binding Path=EmailAddress}" />
 
         <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 70 10 0" Text="Password:" />
-        <PasswordBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 100 10 0" />
+        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 100 10 0"
+                 Text="{Binding Path=Password}" />
 
-        <Button Content="Sign in" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 0 10" />
+        <Button Content="Sign in" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 0 10"
+                Click="SignInBtn_Click" />
         <Button Content="Cancel" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 10 10"
                 Click="CancelBtn_Click" />
     </Grid>
