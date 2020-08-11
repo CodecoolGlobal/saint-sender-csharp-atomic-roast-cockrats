@@ -24,11 +24,13 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Column="0" />
-            <Grid Column="1">
-                <TextBlock Name="ResultTxt" HorizontalAlignment="Left" Margin="10,45,0,0" FontSize="28"
-                           TextWrapping="Wrap"
-                           Text="" VerticalAlignment="Top" />
-            </Grid>
+            <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding _messageInfos}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Header="From" Binding="{Binding From}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Date}"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Subject"  Binding="{Binding Subject}"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </Grid>
 </Window>

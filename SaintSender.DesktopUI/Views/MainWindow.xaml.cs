@@ -1,16 +1,20 @@
 ﻿using System.Windows;
+using SaintSender.DesktopUI.ViewModels;
 using SaintSender.DesktopUI.Views;
 
+// ReSharper disable once CheckNamespace
 namespace SaintSender.DesktopUI
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
             InitializeComponent();
+            var listMailsViewModel = new ListMailsViewModel();
+            DataContext = listMailsViewModel;
         }
 
         private void AddEmailBtn_Click(object sender, RoutedEventArgs e)
