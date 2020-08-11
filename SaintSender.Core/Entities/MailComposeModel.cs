@@ -16,8 +16,7 @@
 
         public override string ToString()
         {
-            return "Target address is: " + this.ToAddress + " subject is: " + this.Subject + " and the message is: " +
-                   this.Body;
+            return $"Target address: {ToAddress}; Subject: {Subject}; Message: {Body}";
         }
 
         #endregion Public Methods

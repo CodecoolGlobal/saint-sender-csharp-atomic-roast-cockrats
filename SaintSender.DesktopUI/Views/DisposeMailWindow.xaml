@@ -3,14 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="DisposeMailWindow" Height="150" Width="397.423">
+        Title="Dispose Mail" Height="120" Width="300">
     <Grid>
-        <TextBlock>Do you really want to dispose this well written, fun and beautiful e-mail?</TextBlock>
-        <Button Content="Yes I'm an idiot!" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 0 10"
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" TextAlignment="Center" Margin="10">Do you really want to dispose this well written, fun and beautiful e-mail?</TextBlock>
+        <Button Content="Yes I'm an idiot!" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 0 10"
                 Click="YesBtn_Click" />
-        <Button Content="Hell nah!" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 10 10"
+        <Button Content="Hell nah!" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 10 10"
                 Click="NoBtn_Click" />
     </Grid>
 </Window>

@@ -1,4 +1,6 @@
-﻿using SaintSender.Core.Interfaces;
+﻿using System.Threading.Tasks;
+using System.Windows;
+using SaintSender.Core.Interfaces;
 using SaintSender.Core.Entities;
 using SaintSender.Core.Services;
 
@@ -59,9 +61,15 @@ namespace SaintSender.DesktopUI.ViewModels
 
         #region Public Functions
 
-        public void Compose()
+        public async Task Compose()
         {
-            _composeService.Compose(_mailComposeModel);
+            if (await _composeService.Compose(_mailComposeModel))
+            {
+                foreach (Window currentWindow in Application.Current.Windows)
+                {
+                    if (currentWindow.Name == "ComposeWindow") currentWindow.Close();
+                }
+            }
         }
 
         #endregion Public Functions

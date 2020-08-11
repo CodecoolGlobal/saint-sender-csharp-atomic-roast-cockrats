@@ -1,9 +1,10 @@
-﻿using SaintSender.Core.Entities;
+﻿using System.Threading.Tasks;
+using SaintSender.Core.Entities;
 
 namespace SaintSender.Core.Interfaces
 {
     public interface IComposeService
     {
-        void Compose(MailComposeModel mailComposeModel);
+        Task<bool> Compose(MailComposeModel mailComposeModel);
     }
 }

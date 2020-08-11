@@ -33,9 +33,9 @@ namespace SaintSender.DesktopUI.Views
             warningWindow.ShowDialog();
         }
 
-        private void ComposeButton_Click(object sender, RoutedEventArgs e)
+        private async void ComposeButton_Click(object sender, RoutedEventArgs e)
         {
-            _composeMailViewModel.Compose();
+            await _composeMailViewModel.Compose();
         }
 
         #endregion Event Handlers
