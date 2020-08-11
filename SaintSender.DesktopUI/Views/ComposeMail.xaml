@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="ComposeMail" Height="450" Width="800">
+        Title="ComposeMail" Height="450" Width="800" Name="ComposeWindow">
     <Grid>
         <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 10 10 0" Text="Target E-Mail Address: " />
         <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 40 10 0"
