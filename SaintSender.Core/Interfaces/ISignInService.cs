@@ -9,6 +9,6 @@ namespace SaintSender.Core.Interfaces
 {
     public interface ISignInService
     {
-        bool SignIn(EmailAccountModel emailAccount);
+        Task<bool> SignIn(EmailAccountModel emailAccount);
     }
 }

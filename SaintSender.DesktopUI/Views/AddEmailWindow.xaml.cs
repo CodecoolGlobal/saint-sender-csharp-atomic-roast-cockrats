@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using SaintSender.DesktopUI.ViewModels;
 
 namespace SaintSender.DesktopUI.Views
@@ -32,9 +33,10 @@ namespace SaintSender.DesktopUI.Views
             Close();
         }
 
-        private void SignInBtn_Click(object sender, RoutedEventArgs e)
+        private async void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.SignIn();
+            await _viewModel.SignIn();
+            LoginAttemptUnsuccessfulTxtBlock.Visibility = Visibility.Visible;
         }
 
         #endregion

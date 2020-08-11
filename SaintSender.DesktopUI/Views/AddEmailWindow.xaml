@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Add Email" Height="200" Width="300">
+        Title="Add Email" Name="AddEmailWindow" Height="200" Width="300">
     <Grid>
         <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 10 10 0" Text="E-mail address:" />
         <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 40 10 0"
@@ -16,6 +16,7 @@
 
         <Button Content="Sign in" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 0 10"
                 Click="SignInBtn_Click" />
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10" TextWrapping="Wrap" Text="Login attempt unsuccessful!" MaxWidth="100" Visibility="Hidden" Name="LoginAttemptUnsuccessfulTxtBlock"/>
         <Button Content="Cancel" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 10 10"
                 Click="CancelBtn_Click" />
     </Grid>

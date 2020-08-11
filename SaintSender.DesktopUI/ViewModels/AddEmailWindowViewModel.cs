@@ -1,4 +1,6 @@
-﻿using SaintSender.Core.Entities;
+﻿using System.Threading.Tasks;
+using System.Windows;
+using SaintSender.Core.Entities;
 using SaintSender.Core.Interfaces;
 using SaintSender.Core.Services;
 
@@ -46,9 +48,19 @@ namespace SaintSender.DesktopUI.ViewModels
 
         #region Public Methods
 
-        public void SignIn()
+        #endregion Public Properties
+
+        #region Public Methods
+
+        public async Task SignIn()
         {
-            _signInService.SignIn(_emailAccountModel);
+            if (await _signInService.SignIn(_emailAccountModel))
+            {
+                foreach (Window currentWindow in Application.Current.Windows)
+                {
+                    if (currentWindow.Name == "AddEmailWindow") currentWindow.Close();
+                }
+            }
         }
 
         #endregion Public Methods
