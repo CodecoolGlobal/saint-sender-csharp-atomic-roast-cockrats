@@ -10,7 +10,8 @@ namespace SaintSender.Core.Services
         public bool SignIn(EmailAccountModel emailAccount)
         {
             Console.WriteLine(emailAccount.ToString());
-            CreateConnection(emailAccount);
+            emailAccount.Serialize();
+            //CreateConnection(emailAccount);
             return false;
         }
 
