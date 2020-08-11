@@ -51,7 +51,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\EmailAccountModel.cs" />
+    <Compile Include="Entities\MailComposeModel.cs" />
+    <Compile Include="Interfaces\IComposeService.cs" />
     <Compile Include="Interfaces\ISignInService.cs" />
+    <Compile Include="Services\ComposeService.cs" />
     <Compile Include="Services\GreetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\IGreetService.cs" />

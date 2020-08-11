@@ -14,7 +14,7 @@
             <Button Content="Add E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
                     Margin="215, 0,0,0" Click="AddEmailBtn_Click" />
             <Button Content="Compose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="300, 0,0,0" />
+                    Margin="300, 0,0,0" Click="ComposeEmail_Click" />
             <Button Content="Backup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
                     Margin="385, 0,0,0" />
         </Grid>
