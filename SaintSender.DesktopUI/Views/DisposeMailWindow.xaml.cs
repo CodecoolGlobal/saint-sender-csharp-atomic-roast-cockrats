@@ -7,10 +7,16 @@ namespace SaintSender.DesktopUI.Views
     /// </summary>
     public partial class DisposeMailWindow
     {
+        #region Constructor
+
         public DisposeMailWindow()
         {
             InitializeComponent();
         }
+
+        #endregion Constructor
+
+        #region Event Handlers
 
         private void YesBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -28,5 +34,7 @@ namespace SaintSender.DesktopUI.Views
         {
             Close();
         }
+
+        #endregion Event Handlers
     }
 }
