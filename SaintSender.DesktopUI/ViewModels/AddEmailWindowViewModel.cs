@@ -1,11 +1,10 @@
-﻿using System;
-using SaintSender.Core.Entities;
+﻿using SaintSender.Core.Entities;
 using SaintSender.Core.Interfaces;
 using SaintSender.Core.Services;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
-    class AddEmailWindowViewModel : BaseViewModel
+    internal class AddEmailWindowViewModel : BaseViewModel
     {
         #region Private Properties
 
@@ -13,7 +12,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         private ISignInService _signInService;
 
-        #endregion
+        #endregion Private Properties
 
         #region Public Properties
 
@@ -43,7 +42,7 @@ namespace SaintSender.DesktopUI.ViewModels
             }
         }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -52,7 +51,7 @@ namespace SaintSender.DesktopUI.ViewModels
             _signInService.SignIn(_emailAccountModel);
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Constructor
 
@@ -62,6 +61,6 @@ namespace SaintSender.DesktopUI.ViewModels
             _signInService = new SignInService();
         }
 
-        #endregion
+        #endregion Constructor
     }
 }
