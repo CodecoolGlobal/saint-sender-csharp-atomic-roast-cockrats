@@ -10,12 +10,30 @@ namespace SaintSender.Core.Services
         public bool SignIn(EmailAccountModel emailAccount)
         {
             Console.WriteLine(emailAccount.ToString());
+            CreateConnection(emailAccount);
             return false;
         }
 
-        public void CreateConnection(EmailAccountModel emailAccount)
+        private void CreateConnection(EmailAccountModel emailAccount)
         {
-            Pop3Client pop = new Pop3Client();
+            Pop3Client client = new Pop3Client(
+                "pop.gmail.com",
+                995,
+                emailAccount.EmailAddress,
+                emailAccount.Password);
+            
+            try
+            {
+                client.Connect();
+                client.Login();
+                Console.WriteLine("Connected");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
+
     }
 }
