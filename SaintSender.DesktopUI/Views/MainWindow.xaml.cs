@@ -18,5 +18,11 @@ namespace SaintSender.DesktopUI
             Window addEmailWindow = new AddEmail();
             addEmailWindow.ShowDialog();
         }
+
+        private void ComposeEmail_Click(object sender, RoutedEventArgs e)
+        {
+            Window composeEmailWindow = new ComposeMail();
+            composeEmailWindow.ShowDialog();
+        }
     }
 }
