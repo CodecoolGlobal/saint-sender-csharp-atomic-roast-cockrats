@@ -9,9 +9,7 @@ namespace SaintSender.Core.Services
     {
         public bool SignIn(EmailAccountModel emailAccount)
         {
-            Console.WriteLine(emailAccount.ToString());
-            emailAccount.Serialize();
-            //CreateConnection(emailAccount);
+            CreateConnection(emailAccount);
             return false;
         }
 
@@ -22,12 +20,12 @@ namespace SaintSender.Core.Services
                 995,
                 emailAccount.EmailAddress,
                 emailAccount.Password);
-            
+
             try
             {
                 client.Connect();
                 client.Login();
-                Console.WriteLine("Connected");
+                emailAccount.Serialize();
             }
             catch (Exception e)
             {
@@ -35,6 +33,5 @@ namespace SaintSender.Core.Services
                 throw;
             }
         }
-
     }
 }

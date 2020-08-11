@@ -32,7 +32,6 @@ namespace SaintSender.Core.Entities
             EmailAccountModel emailAccountModel = new EmailAccountModel();
             string path = Directory.GetParent(Environment.CurrentDirectory).Parent?.Parent?.FullName +
                           @"\data\EmailAccount.bin";
-
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
             emailAccountModel = (EmailAccountModel) formatter.Deserialize(stream);
