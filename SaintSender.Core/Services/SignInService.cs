@@ -24,7 +24,6 @@ namespace SaintSender.Core.Services
 
             return await Task.Run(() =>
             {
-                Console.WriteLine("Returned task");
                 try
                 {
                     client.Connect();
