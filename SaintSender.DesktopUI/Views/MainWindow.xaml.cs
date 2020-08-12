@@ -15,6 +15,7 @@ namespace SaintSender.DesktopUI
             InitializeComponent();
             var listMailsViewModel = new ListMailsViewModel();
             DataContext = listMailsViewModel;
+            listMailsViewModel.Setup();
         }
 
         private void AddEmailBtn_Click(object sender, RoutedEventArgs e)

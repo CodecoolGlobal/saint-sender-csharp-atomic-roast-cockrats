@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using SaintSender.Core.Entities;
 using Spire.Email;
 using Spire.Email.Pop3;
@@ -10,7 +10,7 @@ namespace SaintSender.Core.Services
 {
     public class LoadMessagesService
     {
-        private readonly Pop3Client _pop3Client;
+        private Pop3Client _pop3Client;
 
         public LoadMessagesService()
         {
@@ -21,13 +21,18 @@ namespace SaintSender.Core.Services
                     emailAccountModel.EmailAddress,
                     emailAccountModel.Password)
                 {EnableSsl = true};
-            _pop3Client.Connect();
-            _pop3Client.Login();
         }
 
-        public List<MailMessage> GetMessages()
+        public Task<List<MailMessage>> GetMessages()
         {
-            return _pop3Client.GetAllMessages().Select(message => _pop3Client.GetMessage(message.SequenceNumber)).ToList();
+
+            return Task.Run(() =>
+            {
+                _pop3Client.Connect();
+                _pop3Client.Login();
+                return _pop3Client.GetAllMessages().Select(message => _pop3Client.GetMessage(message.SequenceNumber))
+                    .ToList();
+            });
         }
     }
 }

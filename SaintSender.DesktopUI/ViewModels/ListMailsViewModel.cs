@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SaintSender.Core.Services;
 using Spire.Email;
 using Spire.Email.Pop3;
@@ -36,7 +37,11 @@ namespace SaintSender.DesktopUI.ViewModels
         public ListMailsViewModel()
         {
             LoadMessagesService = new LoadMessagesService();
-            _messageInfos = LoadMessagesService.GetMessages();
+        }
+
+        public async void Setup()
+        {
+            _messageInfos = await LoadMessagesService.GetMessages();
         }
 
         #endregion Constructor
