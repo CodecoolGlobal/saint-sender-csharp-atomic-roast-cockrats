@@ -24,7 +24,12 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid Column="0" />
-            <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding MessageInfos}">
+            <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding MessageInfos}" IsReadOnly="True" Name="MailDataGrid">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <EventSetter Event="MouseDoubleClick" Handler="MailDataGridRow_DoubleClick" />
+                    </Style>
+                </DataGrid.RowStyle>
                 <DataGrid.Columns>
                     <DataGridTextColumn  Header="From" Binding="{Binding From}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}"></DataGridTextColumn>

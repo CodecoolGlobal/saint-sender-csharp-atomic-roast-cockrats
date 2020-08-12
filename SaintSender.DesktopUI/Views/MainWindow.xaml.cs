@@ -1,6 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using SaintSender.DesktopUI.ViewModels;
 using SaintSender.DesktopUI.Views;
+using Spire.Email;
 
 // ReSharper disable once CheckNamespace
 namespace SaintSender.DesktopUI
@@ -28,6 +32,25 @@ namespace SaintSender.DesktopUI
         {
             Window composeEmailWindow = new ComposeMail();
             composeEmailWindow.ShowDialog();
+        }
+
+        private void MailDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            try
+            {
+                DataGridRow dataGridRow = (DataGridRow) sender;
+                Console.WriteLine("Success");
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
+        }
+
+        private void MailDataGridRow_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var Mail = (MailMessage) MailDataGrid.SelectedItem;
+            Console.WriteLine(Mail.BodyText);
         }
     }
 }
