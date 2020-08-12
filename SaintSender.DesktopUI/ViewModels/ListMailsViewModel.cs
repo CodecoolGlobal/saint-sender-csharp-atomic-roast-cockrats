@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SaintSender.Core.Services;
 using Spire.Email;
-using Spire.Email.Pop3;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -12,6 +12,8 @@ namespace SaintSender.DesktopUI.ViewModels
         private List<MailMessage> _messageInfos { get; set; }
 
         private LoadMessagesService LoadMessagesService { get; set; }
+
+        private string _searchText;
 
         #endregion Private Fields
 
@@ -29,6 +31,20 @@ namespace SaintSender.DesktopUI.ViewModels
             }
         }
 
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                _searchText = value;
+                IsSearchBtnEnabled = _searchText.Length >= 3;
+                OnPropertyChanged("IsSearchBtnEnabled");
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsSearchBtnEnabled { get; set; }
+
         #endregion Public Fields
 
         #region Constructor
@@ -40,5 +56,14 @@ namespace SaintSender.DesktopUI.ViewModels
         }
 
         #endregion Constructor
+
+        #region Public Methods
+
+        public void Search()
+        {
+            Console.WriteLine("search");
+        }
+
+        #endregion
     }
 }

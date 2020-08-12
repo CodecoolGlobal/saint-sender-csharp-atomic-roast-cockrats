@@ -1,4 +1,6 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
 using SaintSender.DesktopUI.ViewModels;
 using SaintSender.DesktopUI.Views;
 
@@ -10,11 +12,17 @@ namespace SaintSender.DesktopUI
     /// </summary>
     public partial class MainWindow
     {
+        #region Private Properties
+
+        private readonly ListMailsViewModel _listMailsViewModel;
+
+        #endregion Private Properties
+
         public MainWindow()
         {
             InitializeComponent();
-            var listMailsViewModel = new ListMailsViewModel();
-            DataContext = listMailsViewModel;
+            _listMailsViewModel = new ListMailsViewModel();
+            DataContext = _listMailsViewModel;
         }
 
         private void AddEmailBtn_Click(object sender, RoutedEventArgs e)
@@ -23,10 +31,20 @@ namespace SaintSender.DesktopUI
             addEmailWindow.ShowDialog();
         }
 
-        private void ComposeEmail_Click(object sender, RoutedEventArgs e)
+        private void ComposeEmailBtn_Click(object sender, RoutedEventArgs e)
         {
             Window composeEmailWindow = new ComposeMail();
             composeEmailWindow.ShowDialog();
+        }
+
+        private void SearchTxtBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            BindingOperations.GetBindingExpression(SearchTxtBox, TextBox.TextProperty)?.UpdateSource();
+        }
+
+        private void SearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            _listMailsViewModel.Search();
         }
     }
 }

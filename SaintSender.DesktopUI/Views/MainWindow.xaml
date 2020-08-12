@@ -8,13 +8,13 @@
     <Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10 10" Height="50px" Width="auto">
             <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                     VerticalAlignment="Top" Width="120" />
-            <Button Content="Greet" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="130,0,0,0" />
+                     VerticalAlignment="Top" Width="120" Text="{Binding SearchText, Mode=TwoWay}" TextChanged="SearchTxtBox_TextChanged" Name="SearchTxtBox"/>
+            <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
+                    Margin="130,0,0,0" IsEnabled="{Binding IsSearchBtnEnabled}" Click="SearchBtn_Click"/>
             <Button Content="Add E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
                     Margin="215, 0,0,0" Click="AddEmailBtn_Click" />
             <Button Content="Compose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="300, 0,0,0" Click="ComposeEmail_Click" />
+                    Margin="300, 0,0,0" Click="ComposeEmailBtn_Click" />
             <Button Content="Backup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
                     Margin="385, 0,0,0" />
         </Grid>
