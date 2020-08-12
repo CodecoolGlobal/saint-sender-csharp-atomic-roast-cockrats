@@ -1,4 +1,6 @@
-﻿using SaintSender.Core.Services;
+﻿using System.Collections.Generic;
+using SaintSender.Core.Services;
+using Spire.Email;
 using Spire.Email.Pop3;
 
 namespace SaintSender.DesktopUI.ViewModels
@@ -7,7 +9,7 @@ namespace SaintSender.DesktopUI.ViewModels
     {
         #region Private Fields
 
-        private Pop3MessageInfoCollection _messageInfos { get; set; }
+        private List<MailMessage> _messageInfos { get; set; }
 
         private LoadMessagesService LoadMessagesService { get; set; }
 
@@ -15,7 +17,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         #region Public Fields
 
-        public Pop3MessageInfoCollection MessageInfos
+        public List<MailMessage> MessageInfos
         {
             get => _messageInfos;
             set
@@ -33,11 +35,8 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public ListMailsViewModel()
         {
-            this._messageInfos = new Pop3MessageInfoCollection();
-            this.LoadMessagesService = new LoadMessagesService();
-            /*
-            this._messageInfos = LoadMessagesService.GetMessages();
-            */
+            LoadMessagesService = new LoadMessagesService();
+            _messageInfos = LoadMessagesService.GetMessages();
         }
 
         #endregion Constructor

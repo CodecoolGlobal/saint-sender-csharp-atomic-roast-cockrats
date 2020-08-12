@@ -24,7 +24,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Grid Column="0" />
-            <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding _messageInfos}">
+            <DataGrid Grid.Column="1" AutoGenerateColumns="False" ItemsSource="{Binding MessageInfos}">
                 <DataGrid.Columns>
                     <DataGridTextColumn  Header="From" Binding="{Binding From}"></DataGridTextColumn>
                     <DataGridTextColumn Header="Date" Binding="{Binding Date}"></DataGridTextColumn>

@@ -1,5 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using SaintSender.Core.Entities;
+using Spire.Email;
 using Spire.Email.Pop3;
 
 namespace SaintSender.Core.Services
@@ -10,23 +14,20 @@ namespace SaintSender.Core.Services
 
         public LoadMessagesService()
         {
-            if (File.Exists(@"\data\EmailAccount.bin"))
-            {
-                EmailAccountModel emailAccountModel = EmailAccountModel.Deserialize();
-                _pop3Client = new Pop3Client(
-                        "pop.gmail.com",
-                        995,
-                        emailAccountModel.EmailAddress,
-                        emailAccountModel.Password)
-                    { EnableSsl = true };
-                _pop3Client.Connect();
-                _pop3Client.Login();
-            }
+            EmailAccountModel emailAccountModel = EmailAccountModel.Deserialize();
+            _pop3Client = new Pop3Client(
+                    "pop.gmail.com",
+                    995,
+                    emailAccountModel.EmailAddress,
+                    emailAccountModel.Password)
+                {EnableSsl = true};
+            _pop3Client.Connect();
+            _pop3Client.Login();
         }
 
-        public Pop3MessageInfoCollection GetMessages()
+        public List<MailMessage> GetMessages()
         {
-            return _pop3Client.GetAllMessages();
+            return _pop3Client.GetAllMessages().Select(message => _pop3Client.GetMessage(message.SequenceNumber)).ToList();
         }
     }
 }
