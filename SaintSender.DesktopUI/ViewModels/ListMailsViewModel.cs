@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using SaintSender.Core.Services;
 using Spire.Email;
 
@@ -70,17 +72,23 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public async void Setup()
         {
+            var ts = new CancellationTokenSource();
+            Load(ts);
             if (SearchResultTxt != null) return;
             _messageInfos = await _loadMessagesService.GetMessages();
             _allMessages = _messageInfos;
+            ts.Cancel();
+            SearchResultTxt = null;
         }
 
         public async void SetupAfterLogin()
         {
-            SearchResultTxt = "Loading, please wait!";
+            var ts = new CancellationTokenSource();
+            Load(ts);
             _loadMessagesService = new LoadMessagesService();
             _messageInfos = await _loadMessagesService.GetMessages();
             _allMessages = _messageInfos;
+            ts.Cancel();
             SearchResultTxt = null;
         }
 
@@ -116,6 +124,26 @@ namespace SaintSender.DesktopUI.ViewModels
 
                 return messages;
             });
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void Load(CancellationTokenSource ts)
+        {
+            CancellationToken ct = ts.Token;
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    if (ct.IsCancellationRequested) break;
+                    SearchResultTxt = "Loading...";
+                    Thread.Sleep(500);
+                    SearchResultTxt = "Please Wait!";
+                    Thread.Sleep(500);
+                }
+            }, ct);
         }
 
         #endregion
