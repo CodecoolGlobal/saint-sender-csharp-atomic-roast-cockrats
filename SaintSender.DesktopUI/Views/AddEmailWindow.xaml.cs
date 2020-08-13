@@ -1,7 +1,5 @@
-﻿using System;
+﻿using SaintSender.DesktopUI.ViewModels;
 using System.Windows;
-using System.Windows.Documents;
-using SaintSender.DesktopUI.ViewModels;
 
 namespace SaintSender.DesktopUI.Views
 {
@@ -15,7 +13,7 @@ namespace SaintSender.DesktopUI.Views
         private readonly AddEmailWindowViewModel _viewModel;
         private ListMailsViewModel _listMailsViewModel;
 
-        #endregion
+        #endregion Private Properties
 
         #region Constructor
 
@@ -27,7 +25,7 @@ namespace SaintSender.DesktopUI.Views
             DataContext = _viewModel;
         }
 
-        #endregion
+        #endregion Constructor
 
         #region Event Handlers
 
@@ -47,6 +45,6 @@ namespace SaintSender.DesktopUI.Views
             LoginAttemptUnsuccessfulTxtBlock.Visibility = Visibility.Visible;
         }
 
-        #endregion
+        #endregion Event Handlers
     }
 }

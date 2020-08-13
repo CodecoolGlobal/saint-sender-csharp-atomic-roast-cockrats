@@ -16,7 +16,7 @@
 
         <Button Content="Sign in" Width="75" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 0 10"
                 Click="SignInBtn_Click" />
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10" TextWrapping="Wrap" Text="Login attempt unsuccessful!" MaxWidth="100" Visibility="Hidden" Name="LoginAttemptUnsuccessfulTxtBlock"/>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0 0 0 10" TextWrapping="Wrap" Text="Login attempt unsuccessful!" MaxWidth="100" Visibility="Hidden" Name="LoginAttemptUnsuccessfulTxtBlock" />
         <Button Content="Cancel" Width="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 10 10"
                 Click="CancelBtn_Click" />
     </Grid>

@@ -1,5 +1,5 @@
-﻿using System;
-using Spire.Email;
+﻿using Spire.Email;
+using System;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -9,7 +9,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         private readonly MailMessage _mail;
 
-        #endregion
+        #endregion Private Fields
 
         #region Public Fields
 
@@ -21,7 +21,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public string Message => _mail.BodyText;
 
-        #endregion
+        #endregion Public Fields
 
         #region Constructor
 
@@ -30,6 +30,6 @@ namespace SaintSender.DesktopUI.ViewModels
             _mail = mail;
         }
 
-        #endregion
+        #endregion Constructor
     }
 }

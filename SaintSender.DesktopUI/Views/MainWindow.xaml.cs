@@ -1,13 +1,10 @@
-﻿using System.Windows;
+﻿using SaintSender.DesktopUI.ViewModels;
+using SaintSender.DesktopUI.Views;
+using Spire.Email;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
-using SaintSender.Core.Entities;
-using SaintSender.Core.Interfaces;
-using SaintSender.Core.Services;
-using SaintSender.DesktopUI.ViewModels;
-using SaintSender.DesktopUI.Views;
-using Spire.Email;
 
 // ReSharper disable once CheckNamespace
 namespace SaintSender.DesktopUI
@@ -20,7 +17,6 @@ namespace SaintSender.DesktopUI
         #region Private Properties
 
         private readonly ListMailsViewModel _listMailsViewModel;
-
 
         #endregion Private Properties
 
@@ -46,7 +42,7 @@ namespace SaintSender.DesktopUI
 
         private void MailDataGridRow_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var mail = (MailMessage) MailDataGrid.SelectedItem;
+            var mail = (MailMessage)MailDataGrid.SelectedItem;
             Window mailWindow = new MailWindow(mail);
             mailWindow.ShowDialog();
         }

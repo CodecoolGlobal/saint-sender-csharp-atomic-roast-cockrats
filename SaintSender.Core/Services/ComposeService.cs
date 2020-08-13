@@ -1,9 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using SaintSender.Core.Entities;
+﻿using SaintSender.Core.Entities;
 using SaintSender.Core.Interfaces;
 using Spire.Email.IMap;
 using Spire.Email.Smtp;
+using System;
+using System.Threading.Tasks;
 
 namespace SaintSender.Core.Services
 {

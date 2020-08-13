@@ -18,7 +18,7 @@
             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 50 10 0" Text="Subject:"
                        FontWeight="Bold" FontSize="14" />
             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 70 10 0"
-                       Text="{Binding Subject}" TextWrapping="Wrap"/>
+                       Text="{Binding Subject}" TextWrapping="Wrap" />
             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 90 10 0" Text="Date:"
                        FontWeight="Bold" FontSize="14" />
             <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 110 10 0" Text="{Binding Date}" />

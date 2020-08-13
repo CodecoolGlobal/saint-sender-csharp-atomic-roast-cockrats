@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using SaintSender.DesktopUI.ViewModels;
+﻿using SaintSender.DesktopUI.ViewModels;
+using System.Windows;
 
 namespace SaintSender.DesktopUI.Views
 {
@@ -38,11 +38,11 @@ namespace SaintSender.DesktopUI.Views
 
         private async void ComposeButton_Click(object sender, RoutedEventArgs e)
         {
-            if ( await _composeMailViewModel.Compose()){
+            if (await _composeMailViewModel.Compose())
+            {
                 _listMailsViewModel.SearchResultTxt = "Email sent successfully.";
                 Close();
             }
-            
         }
 
         #endregion Event Handlers

@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using SaintSender.Core.Entities;
+﻿using SaintSender.Core.Entities;
+using System.Threading.Tasks;
 
 namespace SaintSender.Core.Interfaces
 {

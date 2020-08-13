@@ -13,7 +13,7 @@ namespace SaintSender.Core.Entities
         public string EmailAddress { get; set; }
         public string Password { get; set; }
 
-        #endregion
+        #endregion Public Properties
 
         #region Public Methods
 
@@ -34,7 +34,7 @@ namespace SaintSender.Core.Entities
                           @"\data\EmailAccount.bin";
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            emailAccountModel = (EmailAccountModel) formatter.Deserialize(stream);
+            emailAccountModel = (EmailAccountModel)formatter.Deserialize(stream);
             stream.Close();
             return emailAccountModel;
         }
@@ -44,6 +44,6 @@ namespace SaintSender.Core.Entities
             return $"{EmailAddress};{Password}";
         }
 
-        #endregion
+        #endregion Public Methods
     }
 }

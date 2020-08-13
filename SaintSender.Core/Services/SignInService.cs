@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using SaintSender.Core.Entities;
+﻿using SaintSender.Core.Entities;
 using SaintSender.Core.Interfaces;
 using Spire.Email.Pop3;
+using System;
+using System.Threading.Tasks;
 
 namespace SaintSender.Core.Services
 {

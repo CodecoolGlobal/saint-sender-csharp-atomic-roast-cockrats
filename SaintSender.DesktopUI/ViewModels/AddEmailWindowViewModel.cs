@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using System.Windows;
-using SaintSender.Core.Entities;
+﻿using SaintSender.Core.Entities;
 using SaintSender.Core.Interfaces;
 using SaintSender.Core.Services;
+using System.Threading.Tasks;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -46,9 +45,7 @@ namespace SaintSender.DesktopUI.ViewModels
 
         #endregion Public Properties
 
-        #region Public Methods
 
-        #endregion Public Properties
 
         #region Public Methods
 

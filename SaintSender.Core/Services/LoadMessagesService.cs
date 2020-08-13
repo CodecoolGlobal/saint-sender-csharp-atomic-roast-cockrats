@@ -1,10 +1,9 @@
-﻿using System;
+﻿using SaintSender.Core.Entities;
+using Spire.Email;
+using Spire.Email.Pop3;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SaintSender.Core.Entities;
-using Spire.Email;
-using Spire.Email.Pop3;
 
 namespace SaintSender.Core.Services
 {
@@ -20,12 +19,11 @@ namespace SaintSender.Core.Services
                     995,
                     emailAccountModel.EmailAddress,
                     emailAccountModel.Password)
-                {EnableSsl = true};
+            { EnableSsl = true };
         }
 
         public Task<List<MailMessage>> GetMessages()
         {
-
             return Task.Run(() =>
             {
                 _pop3Client.Connect();

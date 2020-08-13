@@ -22,12 +22,11 @@
                 <Button Content="Compose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
                         Margin="300, 0,0,0" Click="ComposeEmailBtn_Click" />
                 <Button Content="Backup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                        Margin="385, 0,0,0" Click="BackUpBtn_Click"/>
+                        Margin="385, 0,0,0" Click="BackUpBtn_Click" />
             </Grid>
             <Grid Grid.Column="1">
                 <TextBlock HorizontalAlignment="Stretch" Text="{Binding SearchResultTxt}" Margin="10,0,0,0" />
             </Grid>
-
         </Grid>
         <Grid Margin="0 50 0 0">
             <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding MessageInfos}" IsReadOnly="True"

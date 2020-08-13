@@ -16,6 +16,6 @@ namespace SaintSender.DesktopUI.Views
             DataContext = new MailWindowViewModel(mail);
         }
 
-        #endregion
+        #endregion Constructor
     }
 }

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using SaintSender.Core.Entities;
+using SaintSender.Core.Services;
+using Spire.Email;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
-using SaintSender.Core.Entities;
-using SaintSender.Core.Services;
-using Spire.Email;
 
 namespace SaintSender.DesktopUI.ViewModels
 {
@@ -66,7 +66,7 @@ namespace SaintSender.DesktopUI.ViewModels
             }
             catch (Exception exception)
             {
-                SearchResultTxt = $"Please log in!";
+                SearchResultTxt = "Please log in!";
             }
         }
 
@@ -118,8 +118,8 @@ namespace SaintSender.DesktopUI.ViewModels
                     }
 
                     messages.AddRange(from mailAddress in message.To
-                        where Regex.IsMatch(mailAddress.Address, SearchText)
-                        select message);
+                                      where Regex.IsMatch(mailAddress.Address, SearchText)
+                                      select message);
                 }
 
                 return messages;
@@ -129,7 +129,7 @@ namespace SaintSender.DesktopUI.ViewModels
         public async Task Backup()
         {
             BackUpModel backUpModel = new BackUpModel(MessageInfos);
-            if(await backUpModel.Serialize())
+            if (await backUpModel.Serialize())
             {
                 Console.WriteLine("Backup process completed");
                 SearchResultTxt = "Backup process completed.";
@@ -144,7 +144,7 @@ namespace SaintSender.DesktopUI.ViewModels
             OnPropertyChanged("SearchResultTxt");
         }
 
-        #endregion
+        #endregion Public Methods
 
         #region Private Methods
 
@@ -164,6 +164,6 @@ namespace SaintSender.DesktopUI.ViewModels
             }, ct);
         }
 
-        #endregion
+        #endregion Private Methods
     }
 }

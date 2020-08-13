@@ -59,7 +59,6 @@ namespace SaintSender.Core.Entities
             List<MailModel> mailModel = new List<MailModel>();
             foreach (var mailMessage in mailMessages)
             {
-                
                 mailModel.Add(
                     new MailModel(mailMessage.From.Address,
                     mailMessage.To[0].Address,
