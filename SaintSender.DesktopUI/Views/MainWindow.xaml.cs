@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -24,9 +23,9 @@ namespace SaintSender.DesktopUI
         public MainWindow()
         {
             InitializeComponent();
-            var listMailsViewModel = new ListMailsViewModel();
-            DataContext = listMailsViewModel;
-            listMailsViewModel.Setup();
+            _listMailsViewModel = new ListMailsViewModel();
+            DataContext = _listMailsViewModel;
+            _listMailsViewModel.Setup();
         }
 
         private void AddEmailBtn_Click(object sender, RoutedEventArgs e)
@@ -39,19 +38,6 @@ namespace SaintSender.DesktopUI
         {
             Window composeEmailWindow = new ComposeMail();
             composeEmailWindow.ShowDialog();
-        }
-
-        private void MailDataGrid_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            try
-            {
-                DataGridRow dataGridRow = (DataGridRow) sender;
-                Console.WriteLine("Success");
-            }
-            catch (Exception exception)
-            {
-                Console.WriteLine(exception);
-            }
         }
 
         private void MailDataGridRow_DoubleClick(object sender, MouseButtonEventArgs e)

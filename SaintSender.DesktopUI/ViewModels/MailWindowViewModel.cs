@@ -5,13 +5,13 @@ namespace SaintSender.DesktopUI.ViewModels
 {
     internal class MailWindowViewModel
     {
-        #region Private Properties
+        #region Private Fields
 
         private readonly MailMessage _mail;
 
         #endregion
 
-        #region Public Properties
+        #region Public Fields
 
         public string FromAddress => _mail.From.Address;
 

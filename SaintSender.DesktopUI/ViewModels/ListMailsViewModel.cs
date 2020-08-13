@@ -14,9 +14,9 @@ namespace SaintSender.DesktopUI.ViewModels
 
         private List<MailMessage> _messageInfos { get; set; }
 
-        private List<MailMessage> allMessages { get; set; }
+        private List<MailMessage> _allMessages { get; set; }
 
-        private LoadMessagesService LoadMessagesService { get; set; }
+        private LoadMessagesService _loadMessagesService { get; set; }
 
         private string _searchText;
 
@@ -56,13 +56,13 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public ListMailsViewModel()
         {
-            LoadMessagesService = new LoadMessagesService();
+            _loadMessagesService = new LoadMessagesService();
         }
 
         public async void Setup()
         {
-            _messageInfos = await LoadMessagesService.GetMessages();
-            allMessages = _messageInfos;
+            _messageInfos = await _loadMessagesService.GetMessages();
+            _allMessages = _messageInfos;
         }
 
         #endregion Constructor
@@ -72,7 +72,7 @@ namespace SaintSender.DesktopUI.ViewModels
         public async void Search()
         {
             MessageInfos = await SearchMails();
-            Console.WriteLine(allMessages.Count);
+            Console.WriteLine(_allMessages.Count);
         }
 
         private async Task<List<MailMessage>> SearchMails()
