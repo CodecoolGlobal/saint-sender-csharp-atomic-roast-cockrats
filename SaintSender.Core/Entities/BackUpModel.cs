@@ -14,7 +14,7 @@ namespace SaintSender.Core.Entities
         private static readonly string path = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.Desktop), "BackUp.bin");
 
-        private List<MailMessage> _mailMessages;
+        public List<MailMessage> _mailMessages{get;set;}
 
         public BackUpModel(List<MailMessage> mailMessages)
         {

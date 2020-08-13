@@ -76,6 +76,11 @@ namespace SaintSender.DesktopUI.ViewModels
             var ts = new CancellationTokenSource();
             Load(ts);
             _messageInfos = await _loadMessagesService.GetMessages();
+            if(_messageInfos == null)
+            {
+                SearchResultTxt = "Network error! Loading backup...";
+                RestoreBackup();
+            }
             _allMessages = _messageInfos;
             ts.Cancel();
             SearchResultTxt = null;
@@ -142,6 +147,13 @@ namespace SaintSender.DesktopUI.ViewModels
                 OnPropertyChanged("SearchResultTxt");
             }
             OnPropertyChanged("SearchResultTxt");
+        }
+
+         private void RestoreBackup()
+        {
+            BackUpModel backUpModel = BackUpModel.Deserialize();
+            _allMessages = backUpModel._mailMessages;
+            _messageInfos = _allMessages;
         }
 
         #endregion Public Methods

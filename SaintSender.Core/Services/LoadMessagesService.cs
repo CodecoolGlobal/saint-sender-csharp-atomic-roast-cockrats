@@ -26,10 +26,16 @@ namespace SaintSender.Core.Services
         {
             return Task.Run(() =>
             {
-                _pop3Client.Connect();
-                _pop3Client.Login();
-                return _pop3Client.GetAllMessages().Select(message => _pop3Client.GetMessage(message.SequenceNumber)).Reverse().Take(20).ToList();
-            });
+                try
+                {
+                    _pop3Client.Connect();
+                    _pop3Client.Login();
+                    return _pop3Client.GetAllMessages().Select(message => _pop3Client.GetMessage(message.SequenceNumber)).Reverse().Take(20).ToList();
+                } catch(System.IO.IOException)
+                {
+                    return null;
+                }
+                });
         }
     }
 }
