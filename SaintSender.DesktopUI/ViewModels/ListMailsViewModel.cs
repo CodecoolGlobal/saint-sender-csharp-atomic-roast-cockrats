@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SaintSender.Core.Entities;
 using SaintSender.Core.Services;
 using Spire.Email;
 
@@ -99,6 +100,24 @@ namespace SaintSender.DesktopUI.ViewModels
 
                 return messages;
             });
+        }
+
+        public async Task Backup()
+        {
+            BackUpModel backUpModel = new BackUpModel(MessageInfos);
+            if(await backUpModel.Serialize())
+            {
+                Console.WriteLine("Backup process completed");
+                SearchResultTxt = "Backup process completed.";
+                OnPropertyChanged("SearchResultTxt");
+            }
+            else
+            {
+                Console.WriteLine("Backup process not completed");
+                SearchResultTxt = "There was an error during the backup process.";
+                OnPropertyChanged("SearchResultTxt");
+            }
+            OnPropertyChanged("SearchResultTxt");
         }
 
         #endregion

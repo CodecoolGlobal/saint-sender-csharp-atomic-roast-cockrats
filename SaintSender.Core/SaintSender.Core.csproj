@@ -53,6 +53,7 @@
     <Compile Include="Entities\BackUpModel.cs" />
     <Compile Include="Entities\EmailAccountModel.cs" />
     <Compile Include="Entities\MailComposeModel.cs" />
+    <Compile Include="Entities\MailModel.cs" />
     <Compile Include="Interfaces\IComposeService.cs" />
     <Compile Include="Interfaces\ISignInService.cs" />
     <Compile Include="Services\BackupService.cs" />

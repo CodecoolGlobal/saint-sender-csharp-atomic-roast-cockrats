@@ -63,15 +63,7 @@ namespace SaintSender.DesktopUI
 
         private async void BackUpBtn_Click(object sender, RoutedEventArgs e)
         {
-            BackUpModel backUpModel = new BackUpModel(_listMailsViewModel.MessageInfos);
-            if(await backUpModel.Serialize())
-            {
-                _listMailsViewModel.SearchResultTxt = "Backup process completed.";
-            }
-            else
-            {
-                _listMailsViewModel.SearchResultTxt = "There was an error during the backup process.";
-            }
+            await _listMailsViewModel.Backup();
         }
     }
 }

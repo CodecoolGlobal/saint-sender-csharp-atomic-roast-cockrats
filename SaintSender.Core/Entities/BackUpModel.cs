@@ -23,31 +23,53 @@ namespace SaintSender.Core.Entities
 
         public BackUpModel()
         {
-
         }
 
         public async Task<bool> Serialize()
         {
+            List<MailModel> mailModel = ConvertToMailModel(_mailMessages);
+
             return await Task.Run(() =>
             {
                 try
-            {
-                if(File.Exists(path))
                 {
-                    File.Delete(path);
+                    if (File.Exists(path))
+                    {
+                        File.Delete(path);
+                    }
+
+                    IFormatter formatter = new BinaryFormatter();
+                    Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
+                    formatter.Serialize(stream, mailModel);
+                    stream.Close();
+                    return true;
                 }
-                IFormatter formatter = new BinaryFormatter();
-                Stream stream = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None);
-                formatter.Serialize(stream, this);
-                stream.Close();
-                return true;
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine(e.InnerException);
+                    return false;
+                }
             }
-            catch (Exception)
+        );
+        }
+
+        public List<MailModel> ConvertToMailModel(List<MailMessage> mailMessages)
+        {
+            List<MailModel> mailModel = new List<MailModel>();
+            foreach (var mailMessage in mailMessages)
             {
-                return false;
+                
+                mailModel.Add(
+                    new MailModel(mailMessage.From.Address,
+                    mailMessage.To[0].Address,
+                    mailMessage.Date,
+                    mailMessage.Subject,
+                    mailMessage.BodyText
+                    ));
             }
-            });
-            
+
+            return mailModel;
         }
 
         public static BackUpModel Deserialize()
@@ -55,7 +77,7 @@ namespace SaintSender.Core.Entities
             BackUpModel backUpModel = new BackUpModel();
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            backUpModel = (BackUpModel) formatter.Deserialize(stream);
+            backUpModel = (BackUpModel)formatter.Deserialize(stream);
             stream.Close();
             return backUpModel;
         }
