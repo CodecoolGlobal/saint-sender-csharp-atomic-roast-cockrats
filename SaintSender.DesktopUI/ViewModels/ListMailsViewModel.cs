@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using SaintSender.Core.Entities;
 using SaintSender.Core.Services;
@@ -59,13 +60,36 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public ListMailsViewModel()
         {
-            _loadMessagesService = new LoadMessagesService();
+            try
+            {
+                _loadMessagesService = new LoadMessagesService();
+            }
+            catch (Exception exception)
+            {
+                SearchResultTxt = $"Please log in!";
+            }
         }
 
         public async void Setup()
         {
+            var ts = new CancellationTokenSource();
+            Load(ts);
+            if (SearchResultTxt != null) return;
             _messageInfos = await _loadMessagesService.GetMessages();
             _allMessages = _messageInfos;
+            ts.Cancel();
+            SearchResultTxt = null;
+        }
+
+        public async void SetupAfterLogin()
+        {
+            var ts = new CancellationTokenSource();
+            Load(ts);
+            _loadMessagesService = new LoadMessagesService();
+            _messageInfos = await _loadMessagesService.GetMessages();
+            _allMessages = _messageInfos;
+            ts.Cancel();
+            SearchResultTxt = null;
         }
 
         #endregion Constructor
@@ -118,6 +142,26 @@ namespace SaintSender.DesktopUI.ViewModels
                 OnPropertyChanged("SearchResultTxt");
             }
             OnPropertyChanged("SearchResultTxt");
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void Load(CancellationTokenSource ts)
+        {
+            CancellationToken ct = ts.Token;
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    if (ct.IsCancellationRequested) break;
+                    SearchResultTxt = "Loading...";
+                    Thread.Sleep(500);
+                    SearchResultTxt = "Please Wait!";
+                    Thread.Sleep(500);
+                }
+            }, ct);
         }
 
         #endregion
