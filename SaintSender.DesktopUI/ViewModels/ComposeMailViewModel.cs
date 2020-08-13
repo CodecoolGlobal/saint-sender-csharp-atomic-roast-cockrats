@@ -61,15 +61,9 @@ namespace SaintSender.DesktopUI.ViewModels
 
         #region Public Functions
 
-        public async Task Compose()
+        public async Task<bool> Compose()
         {
-            if (await _composeService.Compose(_mailComposeModel))
-            {
-                foreach (Window currentWindow in Application.Current.Windows)
-                {
-                    if (currentWindow.Name == "ComposeWindow") currentWindow.Close();
-                }
-            }
+            return await _composeService.Compose(_mailComposeModel);
         }
 
         #endregion Public Functions

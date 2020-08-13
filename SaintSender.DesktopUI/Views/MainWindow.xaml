@@ -7,16 +7,27 @@
         Title="Saint Sender" Height="450" Width="800">
     <Grid>
         <Grid VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10 10" Height="50px" Width="auto">
-            <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
-                     VerticalAlignment="Top" Width="120" Text="{Binding SearchText, Mode=TwoWay}" TextChanged="SearchTxtBox_TextChanged" Name="SearchTxtBox"/>
-            <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="130,0,0,0" IsEnabled="{Binding IsSearchBtnEnabled}" Click="SearchBtn_Click"/>
-            <Button Content="Add E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="215, 0,0,0" Click="AddEmailBtn_Click" />
-            <Button Content="Compose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="300, 0,0,0" Click="ComposeEmailBtn_Click" />
-            <Button Content="Backup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="385, 0,0,0" Click="BackUpBtn_Click"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap"
+                         VerticalAlignment="Top" Width="120" Text="{Binding SearchText, Mode=TwoWay}"
+                         TextChanged="SearchTxtBox_TextChanged" Name="SearchTxtBox" />
+                <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
+                        Margin="130,0,0,0" IsEnabled="{Binding IsSearchBtnEnabled}" Click="SearchBtn_Click" />
+                <Button Content="Add E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
+                        Margin="215, 0,0,0" Click="AddEmailBtn_Click" />
+                <Button Content="Compose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
+                        Margin="300, 0,0,0" Click="ComposeEmailBtn_Click" />
+                <Button Content="Backup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
+                        Margin="385, 0,0,0" Click="BackUpBtn_Click"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBlock HorizontalAlignment="Stretch" Text="{Binding SearchResultTxt}" Margin="10,0,0,0" />
+            </Grid>
+
         </Grid>
         <Grid Margin="0 50 0 0">
             <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding MessageInfos}" IsReadOnly="True"

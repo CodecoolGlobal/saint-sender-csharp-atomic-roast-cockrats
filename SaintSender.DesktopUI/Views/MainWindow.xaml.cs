@@ -40,7 +40,7 @@ namespace SaintSender.DesktopUI
 
         private void ComposeEmailBtn_Click(object sender, RoutedEventArgs e)
         {
-            Window composeEmailWindow = new ComposeMail();
+            Window composeEmailWindow = new ComposeMail(_listMailsViewModel);
             composeEmailWindow.ShowDialog();
         }
 

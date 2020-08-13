@@ -12,15 +12,18 @@ namespace SaintSender.DesktopUI.Views
 
         private readonly ComposeMailViewModel _composeMailViewModel;
 
+        private ListMailsViewModel _listMailsViewModel;
+
         #endregion Private Properties
 
         #region Constructor
 
-        public ComposeMail()
+        public ComposeMail(ListMailsViewModel listMailsViewModel)
         {
             InitializeComponent();
             _composeMailViewModel = new ComposeMailViewModel();
             DataContext = _composeMailViewModel;
+            _listMailsViewModel = listMailsViewModel;
         }
 
         #endregion Constructor
@@ -35,7 +38,11 @@ namespace SaintSender.DesktopUI.Views
 
         private async void ComposeButton_Click(object sender, RoutedEventArgs e)
         {
-            await _composeMailViewModel.Compose();
+            if ( await _composeMailViewModel.Compose()){
+                _listMailsViewModel.SearchResultTxt = "Email sent successfully.";
+                Close();
+            }
+            
         }
 
         #endregion Event Handlers

@@ -72,9 +72,9 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public async void Setup()
         {
+            if (SearchResultTxt != null) return;
             var ts = new CancellationTokenSource();
             Load(ts);
-            if (SearchResultTxt != null) return;
             _messageInfos = await _loadMessagesService.GetMessages();
             _allMessages = _messageInfos;
             ts.Cancel();
