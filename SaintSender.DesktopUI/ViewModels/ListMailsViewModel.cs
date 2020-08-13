@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using SaintSender.Core.Services;
 using Spire.Email;
 
@@ -10,6 +13,8 @@ namespace SaintSender.DesktopUI.ViewModels
         #region Private Fields
 
         private List<MailMessage> _messageInfos { get; set; }
+
+        private List<MailMessage> allMessages { get; set; }
 
         private LoadMessagesService LoadMessagesService { get; set; }
 
@@ -53,15 +58,40 @@ namespace SaintSender.DesktopUI.ViewModels
         {
             LoadMessagesService = new LoadMessagesService();
             _messageInfos = LoadMessagesService.GetMessages();
+            allMessages = _messageInfos;
         }
 
         #endregion Constructor
 
         #region Public Methods
 
-        public void Search()
+        public async void Search()
         {
-            Console.WriteLine("search");
+            MessageInfos = await SearchMails();
+            Console.WriteLine(allMessages.Count);
+        }
+
+        private async Task<List<MailMessage>> SearchMails()
+        {
+            var messages = new List<MailMessage>();
+            return await Task.Run(() =>
+            {
+                foreach (var message in MessageInfos)
+                {
+                    if (Regex.IsMatch(message.Subject, SearchText) ||
+                        Regex.IsMatch(message.BodyText, SearchText))
+                    {
+                        messages.Add(message);
+                        continue;
+                    }
+
+                    messages.AddRange(from mailAddress in message.To
+                        where Regex.IsMatch(mailAddress.Address, SearchText)
+                        select message);
+                }
+
+                return messages;
+            });
         }
 
         #endregion
