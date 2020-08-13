@@ -49,8 +49,9 @@ namespace SaintSender.DesktopUI
 
         private void MailDataGridRow_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var Mail = (MailMessage) MailDataGrid.SelectedItem;
-            Console.WriteLine(Mail.BodyText);
+            var mail = (MailMessage) MailDataGrid.SelectedItem;
+            Window mailWindow = new MailWindow(mail);
+            mailWindow.ShowDialog();
         }
     }
 }

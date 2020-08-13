@@ -3,18 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SaintSender.DesktopUI.Views"
         mc:Ignorable="d"
-        Title="MailWindow" Height="450" Width="800">
+        Title="Mail Window" Height="400" Width="400">
     <Grid>
-        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 10 10 0" Text="Sender:" />
-        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 30 10 0" Text="{}" />
-        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 50 10 0" Text="Subject:" />
-        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 70 10 0" Text="{}" />
-        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 90 10 0" Text="Date:" />
-        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 110 10 0" Text="{}" />
-        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 130 10 0" Text="Message:" />
-        <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 150 10 0" Text="{}" />
-
-</Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="4*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 10 10 0" Text="Sender:"
+                       FontWeight="Bold" FontSize="14" />
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 30 10 0"
+                       Text="{Binding FromAddress}" />
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 50 10 0" Text="Subject:"
+                       FontWeight="Bold" FontSize="14" />
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 70 10 0"
+                       Text="{Binding Subject}" TextWrapping="Wrap"/>
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 90 10 0" Text="Date:"
+                       FontWeight="Bold" FontSize="14" />
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 110 10 0" Text="{Binding Date}" />
+            <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 130 10 0" Text="Message:"
+                       FontWeight="Bold" FontSize="14" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <ScrollViewer>
+                <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10 0 10 0"
+                           Text="{Binding Message}" TextWrapping="Wrap" />
+            </ScrollViewer>
+        </Grid>
+    </Grid>
 </Window>

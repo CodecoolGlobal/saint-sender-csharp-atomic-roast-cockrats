@@ -100,6 +100,7 @@
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ComposeMailViewModel.cs" />
     <Compile Include="ViewModels\ListMailsViewModel.cs" />
+    <Compile Include="ViewModels\MailWindowViewModel.cs" />
     <Compile Include="Views\AddEmailWindow.xaml.cs">
       <DependentUpon>AddEmailWindow.xaml</DependentUpon>
     </Compile>
