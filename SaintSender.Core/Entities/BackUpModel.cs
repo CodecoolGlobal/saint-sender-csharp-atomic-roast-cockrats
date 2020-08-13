@@ -71,14 +71,34 @@ namespace SaintSender.Core.Entities
             return mailModel;
         }
 
-        public static BackUpModel Deserialize()
+        public static List<MailMessage> Deserialize()
         {
-            BackUpModel backUpModel = new BackUpModel();
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-            backUpModel = (BackUpModel)formatter.Deserialize(stream);
+            var mailModels = (List<MailModel>)formatter.Deserialize(stream);
             stream.Close();
-            return backUpModel;
+            return ConvertMailModelsToMailMessages(mailModels);
+        }
+
+        private static List<MailMessage> ConvertMailModelsToMailMessages(List<MailModel> mailModels)
+        {
+            var mailMessages = new List<MailMessage>();
+            foreach (var mailModel in mailModels)
+            {
+                MailAddress from = new MailAddress(mailModel.From);
+                MailAddress to = new MailAddress(mailModel.To);
+                string subject = mailModel.Subject;
+                DateTime date = mailModel.Date;
+                string message = mailModel.Body;
+                mailMessages.Add(new MailMessage(from, to)
+                {
+                    Subject = subject,
+                    BodyText = message,
+                    Date = date
+                });
+            }
+            return mailMessages;
+
         }
     }
 }
