@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SaintSender.Core.Services;
 using Spire.Email;
 using Spire.Email.Pop3;
