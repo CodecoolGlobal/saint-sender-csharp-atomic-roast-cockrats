@@ -66,7 +66,11 @@ namespace SaintSender.DesktopUI
             BackUpModel backUpModel = new BackUpModel(_listMailsViewModel.MessageInfos);
             if(await backUpModel.Serialize())
             {
-                
+                _listMailsViewModel.SearchResultTxt = "Backup process completed.";
+            }
+            else
+            {
+                _listMailsViewModel.SearchResultTxt = "There was an error during the backup process.";
             }
         }
     }
