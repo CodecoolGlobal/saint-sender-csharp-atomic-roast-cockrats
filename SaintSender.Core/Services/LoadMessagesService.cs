@@ -30,8 +30,7 @@ namespace SaintSender.Core.Services
             {
                 _pop3Client.Connect();
                 _pop3Client.Login();
-                return _pop3Client.GetAllMessages().Select(message => _pop3Client.GetMessage(message.SequenceNumber))
-                    .ToList();
+                return _pop3Client.GetAllMessages().Select(message => _pop3Client.GetMessage(message.SequenceNumber)).Reverse().Take(20).ToList();
             });
         }
     }
