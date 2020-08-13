@@ -2,6 +2,9 @@
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Input;
+using SaintSender.Core.Entities;
+using SaintSender.Core.Interfaces;
+using SaintSender.Core.Services;
 using SaintSender.DesktopUI.ViewModels;
 using SaintSender.DesktopUI.Views;
 using Spire.Email;
@@ -17,6 +20,7 @@ namespace SaintSender.DesktopUI
         #region Private Properties
 
         private readonly ListMailsViewModel _listMailsViewModel;
+
 
         #endregion Private Properties
 
@@ -55,6 +59,15 @@ namespace SaintSender.DesktopUI
         private void SearchBtn_Click(object sender, RoutedEventArgs e)
         {
             _listMailsViewModel.Search();
+        }
+
+        private async void BackUpBtn_Click(object sender, RoutedEventArgs e)
+        {
+            BackUpModel backUpModel = new BackUpModel(_listMailsViewModel.MessageInfos);
+            if(await backUpModel.Serialize())
+            {
+                
+            }
         }
     }
 }

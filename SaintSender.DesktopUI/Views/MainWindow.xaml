@@ -16,7 +16,7 @@
             <Button Content="Compose" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
                     Margin="300, 0,0,0" Click="ComposeEmailBtn_Click" />
             <Button Content="Backup" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75"
-                    Margin="385, 0,0,0" />
+                    Margin="385, 0,0,0" Click="BackUpBtn_Click"/>
         </Grid>
         <Grid Margin="0 50 0 0">
             <Grid.ColumnDefinitions>
