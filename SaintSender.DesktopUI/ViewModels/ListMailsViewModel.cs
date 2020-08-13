@@ -50,6 +50,8 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public bool IsSearchBtnEnabled { get; set; }
 
+        public string SearchResultTxt { get; set; }
+
         #endregion Public Fields
 
         #region Constructor
@@ -72,7 +74,8 @@ namespace SaintSender.DesktopUI.ViewModels
         public async void Search()
         {
             MessageInfos = await SearchMails();
-            Console.WriteLine(_allMessages.Count);
+            SearchResultTxt = $"We found {MessageInfos.Count} emails. See below:";
+            OnPropertyChanged("SearchResultTxt");
         }
 
         private async Task<List<MailMessage>> SearchMails()
@@ -80,7 +83,7 @@ namespace SaintSender.DesktopUI.ViewModels
             var messages = new List<MailMessage>();
             return await Task.Run(() =>
             {
-                foreach (var message in MessageInfos)
+                foreach (var message in _allMessages)
                 {
                     if (Regex.IsMatch(message.Subject, SearchText) ||
                         Regex.IsMatch(message.BodyText, SearchText))
