@@ -52,15 +52,9 @@ namespace SaintSender.DesktopUI.ViewModels
 
         #region Public Methods
 
-        public async Task SignIn()
+        public async Task<bool> SignIn()
         {
-            if (await _signInService.SignIn(_emailAccountModel))
-            {
-                foreach (Window currentWindow in Application.Current.Windows)
-                {
-                    if (currentWindow.Name == "AddEmailWindow") currentWindow.Close();
-                }
-            }
+            return await _signInService.SignIn(_emailAccountModel);
         }
 
         #endregion Public Methods

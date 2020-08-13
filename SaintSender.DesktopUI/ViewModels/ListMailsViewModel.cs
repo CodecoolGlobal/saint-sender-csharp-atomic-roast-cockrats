@@ -58,13 +58,30 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public ListMailsViewModel()
         {
-            _loadMessagesService = new LoadMessagesService();
+            try
+            {
+                _loadMessagesService = new LoadMessagesService();
+            }
+            catch (Exception exception)
+            {
+                SearchResultTxt = $"Please log in!";
+            }
         }
 
         public async void Setup()
         {
+            if (SearchResultTxt != null) return;
             _messageInfos = await _loadMessagesService.GetMessages();
             _allMessages = _messageInfos;
+        }
+
+        public async void SetupAfterLogin()
+        {
+            SearchResultTxt = "Loading, please wait!";
+            _loadMessagesService = new LoadMessagesService();
+            _messageInfos = await _loadMessagesService.GetMessages();
+            _allMessages = _messageInfos;
+            SearchResultTxt = null;
         }
 
         #endregion Constructor

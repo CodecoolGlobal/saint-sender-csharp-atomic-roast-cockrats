@@ -30,7 +30,7 @@ namespace SaintSender.DesktopUI
 
         private void AddEmailBtn_Click(object sender, RoutedEventArgs e)
         {
-            Window addEmailWindow = new AddEmail();
+            Window addEmailWindow = new AddEmail(_listMailsViewModel);
             addEmailWindow.ShowDialog();
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Documents;
 using SaintSender.DesktopUI.ViewModels;
 
 namespace SaintSender.DesktopUI.Views
@@ -12,15 +13,17 @@ namespace SaintSender.DesktopUI.Views
         #region Private Properties
 
         private readonly AddEmailWindowViewModel _viewModel;
+        private ListMailsViewModel _listMailsViewModel;
 
         #endregion
 
         #region Constructor
 
-        public AddEmail()
+        public AddEmail(ListMailsViewModel listMailsViewModel)
         {
             InitializeComponent();
             _viewModel = new AddEmailWindowViewModel();
+            _listMailsViewModel = listMailsViewModel;
             DataContext = _viewModel;
         }
 
@@ -35,7 +38,12 @@ namespace SaintSender.DesktopUI.Views
 
         private async void SignInBtn_Click(object sender, RoutedEventArgs e)
         {
-            await _viewModel.SignIn();
+            if (await _viewModel.SignIn())
+            {
+                _listMailsViewModel.SetupAfterLogin();
+                Close();
+            }
+
             LoginAttemptUnsuccessfulTxtBlock.Visibility = Visibility.Visible;
         }
 
