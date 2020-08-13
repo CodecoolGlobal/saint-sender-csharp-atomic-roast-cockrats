@@ -22,6 +22,8 @@ namespace SaintSender.DesktopUI.ViewModels
 
         private string _searchText;
 
+        private bool _networkAvailable { get; set; } = true;
+
         #endregion Private Fields
 
         #region Public Fields
@@ -54,6 +56,8 @@ namespace SaintSender.DesktopUI.ViewModels
 
         public string SearchResultTxt { get; set; }
 
+        public bool IsLoggedIn { get; set; }
+
         #endregion Public Fields
 
         #region Constructor
@@ -63,6 +67,7 @@ namespace SaintSender.DesktopUI.ViewModels
             try
             {
                 _loadMessagesService = new LoadMessagesService();
+                IsLoggedIn = true;
             }
             catch (Exception exception)
             {
@@ -79,18 +84,24 @@ namespace SaintSender.DesktopUI.ViewModels
             if(_messageInfos == null)
             {
                 ts.Cancel();
-                SearchResultTxt = "Network error! Loading backup...";
+                SearchResultTxt = "Network error! Loaded backup";
+                _networkAvailable = false;
                 RestoreBackup();
             }
             _allMessages = _messageInfos;
             ts.Cancel();
-            SearchResultTxt = null;
+            if (_networkAvailable)
+            {
+                IsLoggedIn = true;
+                SearchResultTxt = null;
+            }
         }
 
         public async void SetupAfterLogin()
         {
             var ts = new CancellationTokenSource();
             Load(ts);
+            IsLoggedIn = true;
             _loadMessagesService = new LoadMessagesService();
             _messageInfos = await _loadMessagesService.GetMessages();
             _allMessages = _messageInfos;
@@ -167,9 +178,9 @@ namespace SaintSender.DesktopUI.ViewModels
                 while (true)
                 {
                     if (ct.IsCancellationRequested) break;
-                    SearchResultTxt = "Loading...";
+                    if (SearchResultTxt == null || SearchResultTxt == "Please Wait!") SearchResultTxt = "Loading...";
                     Thread.Sleep(500);
-                    SearchResultTxt = "Please Wait!";
+                    if(SearchResultTxt == "Loading...") SearchResultTxt = "Please Wait!";
                     Thread.Sleep(500);
                 }
             }, ct);
