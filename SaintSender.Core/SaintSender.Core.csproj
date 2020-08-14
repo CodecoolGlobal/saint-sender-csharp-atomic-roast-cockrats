@@ -56,7 +56,6 @@
     <Compile Include="Entities\MailModel.cs" />
     <Compile Include="Interfaces\IComposeService.cs" />
     <Compile Include="Interfaces\ISignInService.cs" />
-    <Compile Include="Services\BackupService.cs" />
     <Compile Include="Services\ComposeService.cs" />
     <Compile Include="Services\GreetService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -5,11 +5,17 @@ namespace SaintSender.Core.Entities
     [Serializable]
     public class MailModel
     {
+        #region Public Fields
+
         public string From;
         public string To;
         public DateTime Date;
         public string Subject;
         public string Body;
+
+        #endregion
+
+        #region Constructor
 
         public MailModel(string from, string to, DateTime date, string subject, string body)
         {
@@ -19,5 +25,7 @@ namespace SaintSender.Core.Entities
             Subject = subject;
             Body = body;
         }
+
+        #endregion
     }
 }

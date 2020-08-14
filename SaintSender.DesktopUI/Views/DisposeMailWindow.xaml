@@ -6,10 +6,15 @@
         mc:Ignorable="d"
         Title="Dispose Mail" Height="120" Width="300">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" TextAlignment="Center" Margin="10">Do you really want to dispose this well written, fun and beautiful e-mail?</TextBlock>
-        <Button Content="Yes I'm an idiot!" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10 0 0 10"
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" TextWrapping="Wrap" TextAlignment="Center"
+                   Margin="10">
+            Do you really want to dispose this well written, fun and beautiful e-mail?
+        </TextBlock>
+        <Button Content="Yes I'm an idiot!" Width="100" HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                Margin="10 0 0 10"
                 Click="YesBtn_Click" />
-        <Button Content="Hell nah!" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 10 10"
+        <Button Content="Hell nah!" Width="100" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                Margin="0 0 10 10"
                 Click="NoBtn_Click" />
     </Grid>
 </Window>

@@ -81,13 +81,14 @@ namespace SaintSender.DesktopUI.ViewModels
             var ts = new CancellationTokenSource();
             Load(ts);
             _messageInfos = await _loadMessagesService.GetMessages();
-            if(_messageInfos == null)
+            if (_messageInfos == null)
             {
                 ts.Cancel();
                 SearchResultTxt = "Network error! Loaded backup";
                 _networkAvailable = false;
                 RestoreBackup();
             }
+
             _allMessages = _messageInfos;
             ts.Cancel();
             if (_networkAvailable)
@@ -110,6 +111,26 @@ namespace SaintSender.DesktopUI.ViewModels
         }
 
         #endregion Constructor
+
+        #region Private Methods
+
+        private void Load(CancellationTokenSource ts)
+        {
+            CancellationToken ct = ts.Token;
+            Task.Factory.StartNew(() =>
+            {
+                while (true)
+                {
+                    if (ct.IsCancellationRequested) break;
+                    if (SearchResultTxt == null || SearchResultTxt == "Please Wait!") SearchResultTxt = "Loading...";
+                    Thread.Sleep(500);
+                    if (SearchResultTxt == "Loading...") SearchResultTxt = "Please Wait!";
+                    Thread.Sleep(500);
+                }
+            }, ct);
+        }
+
+        #endregion Private Methods
 
         #region Public Methods
 
@@ -135,8 +156,8 @@ namespace SaintSender.DesktopUI.ViewModels
                     }
 
                     messages.AddRange(from mailAddress in message.To
-                                      where Regex.IsMatch(mailAddress.Address, SearchText)
-                                      select message);
+                        where Regex.IsMatch(mailAddress.Address, SearchText)
+                        select message);
                 }
 
                 return messages;
@@ -158,34 +179,15 @@ namespace SaintSender.DesktopUI.ViewModels
                 SearchResultTxt = "There was an error during the backup process.";
                 OnPropertyChanged("SearchResultTxt");
             }
+
             OnPropertyChanged("SearchResultTxt");
         }
 
-         private void RestoreBackup()
+        private void RestoreBackup()
         {
             _messageInfos = BackUpModel.Deserialize();
         }
 
         #endregion Public Methods
-
-        #region Private Methods
-
-        private void Load(CancellationTokenSource ts)
-        {
-            CancellationToken ct = ts.Token;
-            Task.Factory.StartNew(() =>
-            {
-                while (true)
-                {
-                    if (ct.IsCancellationRequested) break;
-                    if (SearchResultTxt == null || SearchResultTxt == "Please Wait!") SearchResultTxt = "Loading...";
-                    Thread.Sleep(500);
-                    if(SearchResultTxt == "Loading...") SearchResultTxt = "Please Wait!";
-                    Thread.Sleep(500);
-                }
-            }, ct);
-        }
-
-        #endregion Private Methods
     }
 }

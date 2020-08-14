@@ -46,5 +46,6 @@ namespace SaintSender.DesktopUI.Views
         }
 
         #endregion Event Handlers
+
     }
 }

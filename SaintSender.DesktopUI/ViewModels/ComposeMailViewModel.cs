@@ -58,15 +58,6 @@ namespace SaintSender.DesktopUI.ViewModels
 
         #endregion Public Fields
 
-        #region Public Functions
-
-        public async Task<bool> Compose()
-        {
-            return await _composeService.Compose(_mailComposeModel);
-        }
-
-        #endregion Public Functions
-
         #region Constructor
 
         public ComposeMailViewModel()
@@ -76,5 +67,14 @@ namespace SaintSender.DesktopUI.ViewModels
         }
 
         #endregion Constructor
+
+        #region Public Functions
+
+        public async Task<bool> Compose()
+        {
+            return await _composeService.Compose(_mailComposeModel);
+        }
+
+        #endregion Public Functions
     }
 }

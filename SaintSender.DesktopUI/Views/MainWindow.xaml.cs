@@ -20,6 +20,8 @@ namespace SaintSender.DesktopUI
 
         #endregion Private Properties
 
+        #region Constructor
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,6 +29,10 @@ namespace SaintSender.DesktopUI
             DataContext = _listMailsViewModel;
             _listMailsViewModel.Setup();
         }
+
+        #endregion
+
+        #region Evenet Handlers
 
         private void AddEmailBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +48,7 @@ namespace SaintSender.DesktopUI
 
         private void MailDataGridRow_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var mail = (MailMessage)MailDataGrid.SelectedItem;
+            var mail = (MailMessage) MailDataGrid.SelectedItem;
             Window mailWindow = new MailWindow(mail);
             mailWindow.ShowDialog();
         }
@@ -61,5 +67,7 @@ namespace SaintSender.DesktopUI
         {
             await _listMailsViewModel.Backup();
         }
+
+        #endregion
     }
 }

@@ -45,17 +45,6 @@ namespace SaintSender.DesktopUI.ViewModels
 
         #endregion Public Properties
 
-
-
-        #region Public Methods
-
-        public async Task<bool> SignIn()
-        {
-            return await _signInService.SignIn(_emailAccountModel);
-        }
-
-        #endregion Public Methods
-
         #region Constructor
 
         public AddEmailWindowViewModel()
@@ -65,5 +54,14 @@ namespace SaintSender.DesktopUI.ViewModels
         }
 
         #endregion Constructor
+
+        #region Public Methods
+
+        public async Task<bool> SignIn()
+        {
+            return await _signInService.SignIn(_emailAccountModel);
+        }
+
+        #endregion Public Methods
     }
 }
